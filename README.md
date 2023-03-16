@@ -12,7 +12,7 @@ Nos hemos esforzado por seguir las mejores prácticas y guías de estilo de la c
 
 Para obtener más información sobre cómo funciona con otros frontends/backends, diríjase al repositorio [RealWorld](https://github.com/gothinkster/realworld).
 
-# Cómo funciona
+# Esctructura
 
 ```bash
 src
@@ -32,6 +32,11 @@ src
 ├─ queries # funciones de react query
 └─ repositories # servicio api
     └─ apiClient.ts # instancia y interceptor de Axios
+    
+## Demo
+ 
+ [![Alt text](https://img.youtube.com/vi/Iw2VxlXVcXo/0.jpg)](https://www.youtube.com/watch?v=Iw2VxlXVcXo)
+
 
 # Realizando solicitudes a la API del backend
 
@@ -65,7 +70,6 @@ Start the server
 ```bash
   npm start
 ```
-
 
 ## Descripción general de la funcionalidad
   Guias para el awesome README
@@ -104,5 +108,53 @@ La aplicación de ejemplo es un sitio de blogs sociales (es decir, un clon de Me
 - Página de perfil (URL: /#/profile/:username, /#/profile/:username/favorites )
 - Mostrar información básica del usuario
 - Lista de artículos populares de los artículos creados por el -autor o de los artículos favoritos del autor
+
+## Arquitectur Modulos
+
+Módulo de presentación: Este módulo contendría todos los componentes y recursos necesarios para mostrar la interfaz de usuario, incluyendo las páginas, la lógica de presentación y la representación visual. Sería responsable de manejar la navegación del usuario y la interacción con el sistema.
+
+Módulo de autenticación y autorización: Este módulo estaría encargado de manejar la seguridad del sistema, incluyendo la autenticación y autorización de usuarios. Sería responsable de generar y validar los tokens JWT, así como de verificar las credenciales de los usuarios y sus permisos de acceso.
+
+Módulo de gestión de artículos: Este módulo se encargaría de manejar la creación, edición, eliminación y visualización de los artículos en el sistema. Contendría la lógica de negocio para la manipulación de los artículos, así como los servicios necesarios para acceder a los datos.
+
+Módulo de gestión de etiquetas: Este módulo estaría encargado de manejar la creación, edición, eliminación y visualización de las etiquetas en el sistema. Sería responsable de mantener la integridad y consistencia de las etiquetas en los artículos.
+
+Módulo de gestión de comentarios: Este módulo se encargaría de manejar la creación, edición, eliminación y visualización de los comentarios en el sistema. Contendría la lógica de negocio para la manipulación de los comentarios, así como los servicios necesarios para acceder a los datos.
+
+Módulo de gestión de perfiles: Este módulo estaría encargado de manejar los perfiles de usuario, incluyendo la información básica de los usuarios, la lista de artículos creados y la lista de artículos favoritos. Sería responsable de mantener la integridad y consistencia de los perfiles de usuario en el sistema.
+
+Módulo de persistencia de datos: Este módulo se encargaría de almacenar y acceder a los datos del sistema, incluyendo los artículos, etiquetas, comentarios y perfiles de usuario. Contendría la lógica necesaria para acceder y manipular los datos en el almacenamiento persistente.
+
+                               +--------------------+
+                          |    Módulo de        |
+                          |    Presentación     |
+                          +--------------------+
+                                     |
+                                     |
+                          +--------------------+
+                          | Módulo de Autentic. |
+                          | y Autorización     |
+                          +--------------------+
+                                     |
+                                     |
+                +------------------------+------------------------+
+                |                        |                        |
+      +--------------------+  +--------------------+  +--------------------+
+      | Módulo de Gestión de |  | Módulo de Gestión de |  | Módulo de Gestión de |
+      |      Artículos      |  |       Etiquetas      |  |      Comentarios     |
+      +--------------------+  +--------------------+  +--------------------+
+                                     |
+                                     |
+                          +--------------------+
+                          |  Módulo de Gestión  |
+                          |      de Perfiles    |
+                          +--------------------+
+                                     |
+                                     |
+                          +--------------------+
+                          | Módulo de Persist.   |
+                          |     de Datos        |
+                          +--------------------+
+
 
 
