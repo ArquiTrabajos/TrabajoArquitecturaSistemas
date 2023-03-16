@@ -2,97 +2,107 @@
 
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 
-> ### React + React Query codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### Código de React + React Query que contiene ejemplos del mundo real (CRUD, autenticación, patrones avanzados, etc.) que cumple con las especificaciones y API de [RealWorld](https://github.com/gothinkster/realworld).
 
 ### [Demo](https://react-query-realworld.netlify.app)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **React + React Query** including CRUD operations, authentication, routing, pagination, and more.
+Este código fue creado para demostrar una aplicación fullstack construida con **React + React Query**, incluyendo operaciones CRUD, autenticación, enrutamiento, paginación y más.
 
-We've gone to great lengths to adhere to the [TanStack Query](https://tanstack.com/query/latest/docs/react/overview) community styleguides & best practices.
+Nos hemos esforzado por seguir las mejores prácticas y guías de estilo de la comunidad [TanStack Query](https://tanstack.com/query/latest/docs/react/overview).
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+Para obtener más información sobre cómo funciona con otros frontends/backends, diríjase al repositorio [RealWorld](https://github.com/gothinkster/realworld).
 
-# How it works
+# Cómo funciona
 
 ```bash
 src
 ├─ App.tsx
 ├─ index.tsx
 ├─ react-app-env.d.ts
-├─ Router.tsx # dynamic router assignment
-├─ components # components
-├─ constants # constants
-├─ contexts # context API
+├─ Router.tsx # asignación dinámica de router
+├─ components # componentes
+├─ constants # constantes
+├─ contexts # API de contexto
 ├─ lib
-│  ├─ routerMeta.ts # meta data of router
-│  ├─ token.ts # localstorage class
-│  ├─ utils # utility funcs
-│  └─ hooks # custom hooks
-├─ pages # page components
-├─ queries # react query func
-└─ repositories # api service
-    └─ apiClient.ts # Axios Instance & Interceptor
+│  ├─ routerMeta.ts # meta datos del router
+│  ├─ token.ts # clase de almacenamiento local
+│  ├─ utils # funciones de utilidad
+│  └─ hooks # hooks personalizados
+├─ pages # componentes de página
+├─ queries # funciones de react query
+└─ repositories # servicio api
+    └─ apiClient.ts # instancia y interceptor de Axios
+
+# Realizando solicitudes a la API del backend
+
+Para mayor comodidad, tenemos un servidor de API en vivo funcionando en https://conduit.productionready.io/api para que la aplicación realice solicitudes. Puede ver la especificación de la API aquí, que contiene todas las rutas y respuestas para el servidor.
+
+El código fuente del servidor backend (disponible para Node, Rails y Django) se puede encontrar en el repositorio principal de RealWorld.
+
+## Uso de plantillas marcadas
+
+Puede verificar la especificación del frontend marcado aquí.
+
+## Run Locally
+
+Clone the project
+``` bash
+  git clone https://github.com/ArquiTrabajos/TrabajoArquitecturaSistemas
+```
+Go to the project directory
+``` bash
+  cd my-project
+```
+Install dependencies
+```bash
+  npm install
+```
+```bash
+ npm run build
+```
+Start the server
+
+```bash
+  npm start
 ```
 
-### Making requests to the backend API
 
-For convenience, we have a live API server running at https://conduit.productionready.io/api for the application to make requests against. You can view [the API spec here](https://api.realworld.io/api-docs/) which contains all routes & responses for the server.
+## Descripción general de la funcionalidad
+  Guias para el awesome README
+ - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 
-The source code for the backend server (available for Node, Rails and Django) can be found in the [main RealWorld repo](https://github.com/gothinkster/realworld).
 
-### Using Marked Up Templates
+La aplicación de ejemplo es un sitio de blogs sociales (es decir, un clon de Medium.com) llamado "Conduit". Utiliza una API personalizada para todas las solicitudes, incluida la autenticación. Puede ver una demostración en vivo en https://react-query-realworld.netlify.app.
 
-You can check the marked up [frontend spec here](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates).
+## Funcionalidad general:
 
-# Getting Started
+- Autenticar usuarios mediante JWT (páginas de inicio de sesión/registro + botón de cierre de sesión en la página de configuración)
+- CRUD usuarios (página de registro y configuración - no se requiere eliminación)
+- CRUD Artículos
+- CRUD Comentarios sobre artículos (no se requiere actualización)
+- Obtener y mostrar listas paginadas de artículos
+- Artículos favoritos
+- Seguir a otros usuarios
+- La descomposición general de la página se ve así:
 
-#### Install
-```
-npm i
-```
-#### Build
-```
-npm run build
-```
-#### Start
-```
-npm start
-```
+## Página de inicio (URL: /#/ )
+- Lista de etiquetas
+- Lista de artículos extraídos de Feed, Global o por Tag
+- Paginación para la lista de artículos
+- Páginas de inicio de sesión/registro (URL: /#/login, /#/register )
+- Utiliza JWT (almacena el token en localStorage)
+- La autenticación se puede cambiar fácilmente a basada en sesión/cookie
+- Página de configuración (URL: /#/settings )
+- Página de editor para crear/editar artículos (URL: /#/editor, /#/editor/article-slug-here )
+- Página de artículo (URL: /#/article/article-slug-here )
+- Botón para eliminar artículo (solo se muestra al autor del artículo)
+- Renderizar markdown del servidor en el lado del cliente
+- Sección de comentarios en la parte inferior de la página
+- Botón para eliminar comentario (solo se muestra al autor del comentario)
+- Página de perfil (URL: /#/profile/:username, /#/profile/:username/favorites )
+- Mostrar información básica del usuario
+- Lista de artículos populares de los artículos creados por el -autor o de los artículos favoritos del autor
 
-# Functionality overview
 
-The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at [https://react-query-realworld.netlify.app](https://react-query-realworld.netlify.app)
-
-**General functionality:**
-
-- Authenticate users via JWT (login/signup pages + logout button on settings page)
-- CRU- users (sign up & settings page - no deleting required)
-- CRUD Articles
-- CR-D Comments on articles (no updating required)
-- GET and display paginated lists of articles
-- Favorite articles
-- Follow other users
-
-**The general page breakdown looks like this:**
-
-- Home page (URL: /#/ )
-  - List of tags
-  - List of articles pulled from either Feed, Global, or by Tag
-  - Pagination for list of articles
-- Sign in/Sign up pages (URL: /#/login, /#/register )
-  - Uses JWT (store the token in localStorage)
-  - Authentication can be easily switched to session/cookie based
-- Settings page (URL: /#/settings )
-  - Editor page to create/edit articles (URL: /#/editor, /#/editor/article-slug-here )
-- Article page (URL: /#/article/article-slug-here )
-  - Delete article button (only shown to article's author)
-  - Render markdown from server client side
-  - Comments section at bottom of page
-  - Delete comment button (only shown to comment's author)
-- Profile page (URL: /#/profile/:username, /#/profile/:username/favorites )
-  - Show basic user info
-  - List of articles populated from author's created articles or author's favorited articles
-
-<br />
-
-  [![Brought to you by Thinkster](https://raw.githubusercontent.com/gothinkster/realworld/master/media/end.png)](https://thinkster.io)
