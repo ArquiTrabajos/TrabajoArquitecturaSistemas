@@ -159,3 +159,13 @@ Módulo de persistencia de datos: Este módulo se encargaría de almacenar y acc
 
 
 
+Licencia
+Incluye información sobre la licencia de la extensión, por ejemplo, si se trata de software libre o de código cerrado.
+
+-----
+
+<p align="center">
+Give the extension a :star: if you liked it.<br>
+Made with :heart: and javascript.
+</p>
+
