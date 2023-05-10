@@ -1,22 +1,14 @@
-import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
-import token from '@/lib/token';
-import { createContext, useState } from 'react';
+import useIsLoginContext from '@/lib/hooks/useIsLoginContext';
+import { createContext } from 'react';
 
 interface IUserContextProviderProps {
   children: JSX.Element[];
 }
 
-interface IDefaultUserContext {
-  isLogin: boolean;
-  setIsLogin: any;
-}
-
-export const UserContext = createContext<IDefaultUserContext>({ isLogin: false, setIsLogin: null });
+export const UserContext = createContext({} as ReturnType<typeof useIsLoginContext>);
 
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
-  const [isLogin, setIsLogin] = useState(!!token.getToken(ACCESS_TOKEN_KEY));
-
-  return <UserContext.Provider value={{ isLogin, setIsLogin }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={useIsLoginContext()}>{children}</UserContext.Provider>;
 };
 
 export default UserContextProvider;
